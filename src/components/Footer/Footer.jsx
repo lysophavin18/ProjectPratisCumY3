@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="footer">
       <Container>
         <Row>
-          <Col lg="4">
+          <Col lg="5">
             <div className="logo">
               <div>
                 <h1 className="text-white">HOME ASR</h1>
@@ -24,13 +24,30 @@ const Footer = () => {
             </p>
           </Col>
 
+          <Col lg="4"><div className="footer__quick-link">
+               <h4 className="quick__link-title text-white">
+                 Privacy Policy
+               </h4>
+
+               <ListGroup className="mb-3">
+                 <ListGroupItem className="ps-0 border-0">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, libero?</p>
+                 </ListGroupItem >
+               </ListGroup>
+              </div> 
+            
+            </Col>
+            
+ 
+
+
           <Col lg="3">
             <div className="footer__quick-link">
                <h4 className="quick__link-title text-white">
                 Contanct
                </h4>
 
-               <ListGroup className="mb-3">
+               <ListGroup className="footer__contact mb-3">
                  <ListGroupItem className="ps-0 border-0"><Col lg='12'>
             </Col>
         
@@ -50,24 +67,17 @@ const Footer = () => {
                     <p>VINNZz</p>
                  </ListGroupItem>
 
+                 <ListGroupItem className="ps-0 border-0">
+                    <span><i class="ri-mail-line"></i></span>
+                    <p>ly.sophavin@gmail.com</p>
+                 </ListGroupItem>
+
                </ListGroup>
             </div>
               
          </Col>
 
-          <Col lg="3"><div className="footer__quick-link">
-               <h4 className="quick__link-title text-white">
-                 Privacy Policy
-               </h4>
-
-               <ListGroup className="mb-3">
-                 <ListGroupItem className="ps-0 border-0">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, libero?</p>
-                 </ListGroupItem >
-               </ListGroup>
-              </div> 
-            
-            </Col>
+          
             
             <Col lg='12'>
                <p className="footer__copyright"> Copyright {year} developed by @sophainly All rights reserved</p>

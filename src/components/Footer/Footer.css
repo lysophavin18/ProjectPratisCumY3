@@ -17,3 +17,13 @@
      color: #b1aaaa;
   
 }
+
+.quick__links-title {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size:1.1rem ;
+}
+
+.footer__contact li {
+    color: #b1aaaa;
+}
