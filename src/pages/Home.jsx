@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [bestSalesProducts, setBestSalesProducts] = useState([]);
-  const year = new Date().getFullYear();
+ 
 
   useEffect(() => {
     const filterdTrebdingProducts = products.filter(
