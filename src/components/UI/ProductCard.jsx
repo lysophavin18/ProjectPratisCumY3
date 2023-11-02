@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import "../../styles/product-cart.css";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 
 import { useDispatch } from "react-redux";
 import { CartActions } from "../../redux/slices/cartSlice";
@@ -19,7 +21,7 @@ const ProductCard = ({ item }) => {
         image: item.imgUrl,
       })
     );
-    alert("product added to the cart ");
+    toast.success('Product added Successfully');
   };
 
   return (
