@@ -52,17 +52,19 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg="2" md="4">
-              <div class="filter__widget">
-                <select className="form-select ">
+           
+              <Col lg="3" md="3"className="text-end">
+              <div class="filter__widget" >
+                <select className="form-select">
                   <option>Sort By</option>
                   <option value="ascending">Ascending</option>
                   <option value="descending">Descending</option>
                 </select>
               </div>
             </Col>
+            
 
-            <Col lg="6" md="6">
+            <Col lg="6" md="12">
               <div className="search-box">
                 <input type="text" placeholder="search...."  onChange={handleSearch}/>
                 <span>
