@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
@@ -40,6 +40,14 @@ const ProductDetails = () => {
 
     const reviewUserName = reviewUser.current.value;
     const reviewUserMsg = reviewMsg.current.value;
+
+    const reviewObj = {
+      userName: reviewUserName,
+      text: reviewUserMsg,
+      rating,
+    };
+    console.log(reviewObj);
+    toast.success('Review Submitted');
   };
   const addToCart = () => {
     dispatch(
@@ -50,8 +58,11 @@ const ProductDetails = () => {
         price,
       })
     );
-     toast.success("Product added successfully");
+    toast.success("Product added successfully");
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [product]);
 
   return (
     <Helmet title={productName}>
@@ -94,7 +105,11 @@ const ProductDetails = () => {
                   </div>
                   <p className="mt-3">{shortDesc}</p>
 
-                  <motion.button whileTap={{ scale: 1.2 }} className="buy__btn" onClick={addToCart}>
+                  <motion.button
+                    whileTap={{ scale: 1.2 }}
+                    className="buy__btn"
+                    onClick={addToCart}
+                  >
                     Add to Cart
                   </motion.button>
                 </div>
@@ -148,25 +163,41 @@ const ProductDetails = () => {
                             type="text"
                             placeholder="Enter name"
                             ref={reviewUser}
+                            required
                           />
                         </div>
 
                         <div className="form__group d-flex align-items-center gap-5">
-                          <span onClick={() => setRating(1)}>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(1)}
+                          >
                             1<i class="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(2)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(2)}
+                          >
                             2<i class="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(3)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(3)}
+                          >
                             3<i class="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(4)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(4)}
+                          >
                             4<i class="ri-star-s-fill"></i>
-                          </span>
-                          <span onClick={() => setRating(5)}>
+                          </motion.span>
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
+                            onClick={() => setRating(5)}
+                          >
                             5<i class="ri-star-s-fill"></i>
-                          </span>
+                          </motion.span>
                         </div>
 
                         <div className="form__group">
@@ -175,12 +206,10 @@ const ProductDetails = () => {
                             rows={4}
                             type="text"
                             placeholder="Review Message...."
+                            required
                           />
                         </div>
-                        <button
-                          type="submit"
-                          className="buy__btn"
-                        >
+                        <button type="submit" className="buy__btn">
                           Submit
                         </button>
                       </form>
