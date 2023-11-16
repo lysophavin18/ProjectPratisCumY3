@@ -5,7 +5,7 @@ import CommonSection from "../components/UI/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { motion } from "framer-motion";
 import { CartActions } from "../redux/slices/cartSlice";
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
