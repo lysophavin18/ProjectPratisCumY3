@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import "../../styles/product-cart.css";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
-
+import { toast } from "react-toastify";
 
 import { useDispatch } from "react-redux";
 import { CartActions } from "../../redux/slices/cartSlice";
@@ -18,10 +17,10 @@ const ProductCard = ({ item }) => {
         id: item.id,
         productName: item.productName,
         price: item.price,
-        image: item.imgUrl,
+        imgUrl: item.imgUrl,
       })
     );
-    toast.success('Product added Successfully');
+    toast.success("Product added Successfully");
   };
 
   return (
@@ -42,10 +41,7 @@ const ProductCard = ({ item }) => {
               justify-content-between p-2 "
         >
           <span className="price">${item.price}</span>
-          <motion.span
-            whileTap={{ scale: 1.2 }}
-            onClick={addToCart}
-          >
+          <motion.span whileTap={{ scale: 1.2 }} onClick={addToCart}>
             <i class="ri-add-line"></i>
           </motion.span>
         </div>
