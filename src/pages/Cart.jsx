@@ -5,7 +5,7 @@ import CommonSection from "../components/UI/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { motion } from "framer-motion";
 import { CartActions } from "../redux/slices/cartSlice";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -52,10 +52,10 @@ const Cart = () => {
               </p>
               <div>
                 <button className="buy__btn w-100 ">
-                  <Link to="/checkout"></Link>Checkout
+                  <Link to="/checkout">Checkout</Link>
                 </button>
                 <button className="buy__btn w-100 mt-3">
-                  <Link to="/shop"></Link>Continue Shopping
+                  <Link to="/shop">Continue Shopping</Link>
                 </button>
               </div>
             </Col>
