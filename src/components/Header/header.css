@@ -22,7 +22,7 @@
 }
 
 .logo h1 {
-    font-size:1.2rem ;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-color);
 }
@@ -34,7 +34,7 @@
     margin-bottom: 0;
 }
 
-.nav__item a{
+.nav__item a {
     color: var(--primary-color);
     font-weight: 500;
     cursor: pointer;
@@ -47,42 +47,71 @@
 }
 
 .nav__icons span i {
- font-size: 1.4rem;
- color: var(--primary-color);
- cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    cursor: pointer;
 }
 
-.cart__icon, .fav__icon{
+.cart__icon,
+.fav__icon {
     position: relative;
 }
 
 .badge {
-     position: absolute;
-     top: 25%;
-     right: -8%;
-     width: 15px;
-     height: 15px;
-     content: '';
-     background: var(--primary-color);
-     color: #fff;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: .7rem;
-     font-weight: 600;
-     z-index: 10;
+    position: absolute;
+    top: 25%;
+    right: -8%;
+    width: 15px;
+    height: 15px;
+    content: '';
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    font-weight: 600;
+    z-index: 10;
 }
 
-.nav__icons span img {
+.nav__icons .profile img {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    border-radius: 50%;
 }
+
+.nav__icons .profile {
+    position: relative;
+    z-index: 9;
+}
+
+.nav__icons .profile .profile_actions {
+    position: absolute;
+    top: 98%;
+    left: 0;
+    width: 150px;
+    z-index: 10;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: var(--card-bg-01);
+    line-height: 30px;
+    display: none;
+    cursor: pointer;
+}
+
+.show__profileActions {
+    display: block;
+}
+
+
 .mobile__menu {
-   font-size: 1.3rem;
-   color: var(--primary-color);
-   display: none;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    display: none;
 }
 
 .nav__active {
@@ -97,23 +126,24 @@
     top: 0;
     left: 0;
     z-index: 999;
-    box-shadow: 3px 3px 8px -3px #ddd ;
-    background:#aeaeae;
+    box-shadow: 3px 3px 8px -3px #ddd;
+    background: #aeaeae;
 }
 
 @media only screen and (max-width:768px) {
-     .navigation {
+    .navigation {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0green,0blue,0.53);
+        background: rgba(0, 0green, 0blue, 0.53);
         z-index: 9999;
         display: none;
-     }
-    .menu{
-        position: absolute ;
+    }
+
+    .menu {
+        position: absolute;
         top: 0;
         right: 0;
         width: 250px;
@@ -123,31 +153,40 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        
+
     }
+
     .active__menu {
         display: block;
     }
+
     .mobile__menu {
         display: block;
     }
+
     .mobile__menu span i {
         font-size: 1.1 !important;
     }
+
     .logo img {
         width: 1rem;
         height: 1rem;
     }
+
     .logo h1 {
         font-size: 1rem;
     }
-    .fav__icon i , .cart__icon i{
+
+    .fav__icon i,
+    .cart__icon i {
         font-size: 1.2rem !important;
     }
+
     .nav__icons span img {
         width: 1.4rem;
         height: 1.4rem;
     }
+
     .header {
         width: 100%;
         height: 60px;

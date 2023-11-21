@@ -19,3 +19,6 @@
     border-top: 1px solid rgba(221, 221, 221, 0.253);
     padding-top: 20px;
 }
+.auth_btn{
+    background: #fff;
+}
