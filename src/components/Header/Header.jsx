@@ -53,6 +53,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         toast.success("Logged out");
+        navigate("/home");
       })
       .catch((err) => {
         toast.error(err.message);
@@ -114,7 +115,7 @@ const Header = () => {
 
               <div className="profile">
                 <motion.img
-                  whileTap={{ scale: 1.3 }}
+                  whileTap={{ scale: 1.2 }}
                   src={
                     currentUser ? currentUser.photoURL || user_icon : user_icon
                   }
@@ -129,9 +130,10 @@ const Header = () => {
                   {currentUser ? (
                     <span onClick={logout}>Logout</span>
                   ) : (
-                    <div>
+                    <div className="d-flex align-items-center justify-content-center flex-column">
                       <Link to="/signup">Signup</Link>
                       <Link to="/login">Login</Link>
+                      <Link to="/dashboard">Dashboard</Link>
                     </div>
                   )}
                 </div>

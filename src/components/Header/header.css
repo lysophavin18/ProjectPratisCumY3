@@ -87,6 +87,7 @@
     z-index: 9;
 }
 
+
 .nav__icons .profile .profile_actions {
     position: absolute;
     top: 98%;
@@ -103,8 +104,9 @@
     cursor: pointer;
 }
 
+
 .show__profileActions {
-    display: block;
+    display: block !important;
 }
 
 
