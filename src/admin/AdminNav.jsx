@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 import useAuth from "../custom-hooks/useAuth";
 import "../styles/admin-nav.css";
-
 import { NavLink } from "react-router-dom";
 
 const admin__nav = [
@@ -34,22 +33,26 @@ const AdminNav = () => {
           <Container>
             <div className="admin__nav-wrapper-top">
               <div className="logo">
-                <h2>HOME.ARS</h2>
+                <h2 className="bold">HOMEARS</h2>
               </div>
               <div className="search-box">
                 <input type="text" placeholder="Search...." />
                 <span>
-                  <i class="ri-search-line"></i>
+                  <i className="ri-search-line"></i>
                 </span>
               </div>
               <div className="admin__nav-top-right">
                 <span>
-                  <i class="ri-notification-line"></i>
+                  <i className="ri-notification-line"></i>
                 </span>
                 <span>
-                  <i class="ri-settings-2-line"></i>
+                  <i className="ri-settings-2-line"></i>
                 </span>
-                <img src={currentUser.photoURL} alt="" />
+                {currentUser ? (
+                  <img src={currentUser.photoURL || "default-photo-url"} alt="" />
+                ) : (
+                  <span>Not authenticated</span>
+                )}
               </div>
             </div>
           </Container>
