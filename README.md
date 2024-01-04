@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# This is My Funiture Website author @sophavinly18
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+This is my project when am in year 3 at Department Infomation Technology Engineering at Facuty of Engineering.
+of Royal University of Phnom penh. adviser Name Chimm Bunchun 
+This is his Linkin -> https://www.google.com/url?sa=i&url=https%3A%2F%2Fkh.linkedin.com%2Fin%2Fbunchhun-chhim-714a06231&psig=AOvVaw2llcisEJYwI-w2bQTgBRpQ&ust=1704433950511000&source=images&cd=vfe&ved=0CBQQjhxqFwoTCODik8GFw4MDFQAAAAAdAAAAABAE
