@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
-import products from "../assets/data/products";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { useDispatch } from "react-redux";
@@ -11,27 +9,41 @@ import { motion } from "framer-motion";
 import ProductsList from "../components/UI/ProductsList";
 import { CartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
+import { db } from "../firebase.config"; // Update this path based on your project structure
+import { doc, getDoc } from "firebase/firestore";
+import useGetData from "../custom-hooks/useGetData";
 
 const ProductDetails = () => {
+  const [product, setProduct] = useState({});
   const [tab, setTab] = useState("desc");
   const reviewUser = useRef("");
   const reviewMsg = useRef("");
   const [rating, setRating] = useState(null);
   const dispatch = useDispatch();
-
   const { id } = useParams();
-  const product = products.find((item) => item.id === id);
+  const { data: products } = useGetData("products");
 
-  const {
-    imgUrl,
-    productName,
-    price,
-    avgRating,
-    reviews,
-    description,
-    shortDesc,
-    category,
-  } = product;
+  const docRef = doc(db, "products", id);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setProduct(docSnap.data());
+        } else {
+          console.log("No product!");
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+      }
+    };
+
+    getProduct();
+  }, [docRef]);
+
+  const { imgUrl, productName, price, description, shortDesc, category } =
+    product;
 
   const relatedProduct = products.filter((item) => item.category === category);
 
@@ -47,19 +59,21 @@ const ProductDetails = () => {
       rating,
     };
     console.log(reviewObj);
-    toast.success('Review Submitted');
+    toast.success("Review Submitted");
   };
+
   const addToCart = () => {
     dispatch(
       CartActions.addItem({
         id,
-        imgae: imgUrl,
+        image: imgUrl,
         productName,
         price,
       })
     );
     toast.success("Product added successfully");
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
@@ -79,24 +93,11 @@ const ProductDetails = () => {
                 <div className="product__rating d-flex align-items-center gap-5 mb-3">
                   <div>
                     <span>
-                      <i class="ri-star-s-fill"></i>
+                      <i className="ri-star-s-fill"></i>
                     </span>
-                    <span>
-                      <i class="ri-star-s-fill"></i>
-                    </span>
-                    <span>
-                      <i class="ri-star-s-fill"></i>
-                    </span>
-                    <span>
-                      <i class="ri-star-s-fill"></i>
-                    </span>
-                    <span>
-                      <i class="ri-star-half-fill"></i>
-                    </span>
+                    {/* Add other stars as needed */}
                   </div>
-                  <p>
-                    (<span>{avgRating}</span>ratings)
-                  </p>
+                  {/* Display average rating here if available */}
                 </div>
                 <div>
                   <div className="d-flex align-items-center gap-5">
@@ -104,7 +105,6 @@ const ProductDetails = () => {
                     <span>Category: {category.toUpperCase()}</span>
                   </div>
                   <p className="mt-3">{shortDesc}</p>
-
                   <motion.button
                     whileTap={{ scale: 1.2 }}
                     className="buy__btn"
@@ -134,8 +134,8 @@ const ProductDetails = () => {
                   className={`${tab === "rev" ? "active__tab" : ""}`}
                   onClick={() => setTab("rev")}
                 >
-                  {" "}
-                  Reviews({reviews.length})
+                  {/* {" "}
+                  Reviews({reviews.length}) */}
                 </h6>
               </div>
               {tab === "desc" ? (
@@ -146,13 +146,13 @@ const ProductDetails = () => {
                 <div className="product__reviews mt-5">
                   <div className="review__wrapper">
                     <ul>
-                      {reviews?.map((item, index) => (
+                      {/* {reviews?.map((item, index) => (
                         <li key={index} className="md-4">
                           <h6>Sophavin</h6>
                           <span>{item.rating} ( rating)</span>
                           <p>{item.text}</p>
                         </li>
-                      ))}
+                      ))} */}
                     </ul>
 
                     <div className="review__form">
@@ -172,31 +172,31 @@ const ProductDetails = () => {
                             whileTap={{ scale: 1.2 }}
                             onClick={() => setRating(1)}
                           >
-                            1<i class="ri-star-s-fill"></i>
+                            1<i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
                             onClick={() => setRating(2)}
                           >
-                            2<i class="ri-star-s-fill"></i>
+                            2<i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
                             onClick={() => setRating(3)}
                           >
-                            3<i class="ri-star-s-fill"></i>
+                            3<i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
                             onClick={() => setRating(4)}
                           >
-                            4<i class="ri-star-s-fill"></i>
+                            4<i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
                             onClick={() => setRating(5)}
                           >
-                            5<i class="ri-star-s-fill"></i>
+                            5<i className="ri-star-s-fill"></i>
                           </motion.span>
                         </div>
 

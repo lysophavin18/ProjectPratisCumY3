@@ -22,40 +22,42 @@ const AddProduct = () => {
   const addProduct = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
-      const docRef = await collection(db, "products");
-      const storageRef = ref(
-        storage,
-        `productImages/${Date.now() + enterProductImg.name}`
-      );
-  
-      // Use await directly on uploadBytes to simplify the code
-      const snapshot = await uploadBytes(storageRef, enterProductImg);
-  
-      // Get the download URL from the snapshot
-      const downloadURL = await getDownloadURL(snapshot.ref);
-  
-      // Add the product to Firestore
-      await addDoc(docRef, {
-        title: enterTitle,
-        shortDesc: enterShortDesc,
-        description: enterDescription,
-        category: enterCategory,
-        price: enterPrice,
-        imgURL: downloadURL,
-      });
-  
-      setLoading(false);
-      toast.success("Product Successfully Added!");
-      navigate("/dashboard/all-products");
+      const collectionRef = collection(db, "products");
+
+      if (enterProductImg) {
+        const storageRef = ref(
+          storage,
+          `productImages/${Date.now() + enterProductImg.name}`
+        );
+
+        const snapshot = await uploadBytes(storageRef, enterProductImg);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        await addDoc(collectionRef, {
+          title: enterTitle,
+          shortDesc: enterShortDesc,
+          description: enterDescription,
+          category: enterCategory,
+          price: enterPrice,
+          imgURL: downloadURL,
+        });
+
+        setLoading(false);
+        toast.success("Product Successfully Added!");
+        navigate("/dashboard/all-products");
+      } else {
+        setLoading(false);
+        toast.error("Please select a product image.");
+      }
     } catch (err) {
       setLoading(false);
       console.error("Error adding product:", err);
       toast.error("Product add failed!");
     }
   };
-  
+
   return (
     <section>
       <Container>
@@ -71,7 +73,7 @@ const AddProduct = () => {
                     <span>Product Title</span>
                     <input
                       type="text"
-                      placeholder="Double sofa "
+                      placeholder="Double sofa"
                       value={enterTitle}
                       onChange={(e) => setEnterTitle(e.target.value)}
                       required
@@ -89,8 +91,7 @@ const AddProduct = () => {
                   </FormGroup>
                   <FormGroup className="form__group">
                     <span>Description</span>
-                    <input
-                      type="text"
+                    <textarea
                       placeholder="Description"
                       value={enterDescription}
                       onChange={(e) => setEnterDescription(e.target.value)}
@@ -111,7 +112,6 @@ const AddProduct = () => {
                     </FormGroup>
                     <FormGroup className="form__group w-50">
                       <span>Category</span>
-
                       <select
                         className="w-100 p-2"
                         value={enterCategory}

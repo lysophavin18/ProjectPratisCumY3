@@ -1,4 +1,5 @@
-import React from "react";
+// AllProduct.js
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import useGetData from "../custom-hooks/useGetData";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -6,12 +7,31 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 
 const AllProduct = () => {
-  const { data: productData } = useGetData("products");
+  const { data: productData, isLoading, error } = useGetData("products");
+  const [deletingProductId, setDeletingProductId] = useState(null);
 
   const deleteProduct = async (id) => {
-    await deleteDoc(doc(db, "products", id));
-    toast.success("Deleted!");
+    try {
+      console.log("Deleting product with ID:", id);
+      setDeletingProductId(id);
+      await deleteDoc(doc(db, "products", id));
+      console.log("Product deleted successfully!");
+      toast.success("Deleted!");
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      toast.error("Deletion failed!");
+    } finally {
+      setDeletingProductId(null);
+    }
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error loading products: {error.message}</p>;
+  }
 
   return (
     <section>
@@ -32,19 +52,20 @@ const AllProduct = () => {
                 {productData.map((item) => (
                   <tr key={item.id}>
                     <td>
-                      <img src={item.imgURL} alt="" />
+                      <img src={item.imgURL} alt="" style={{ width: "50px" }} />
                     </td>
                     <td>{item.title}</td>
                     <td>{item.category}</td>
                     <td>${item.price}</td>
                     <td>
                       <button
-                        onClick={() => {
-                          deleteProduct(item.id);
-                        }}
+                        onClick={() => deleteProduct(item.id)}
                         className="btn btn-danger"
+                        disabled={deletingProductId === item.id}
                       >
-                        Delete
+                        {deletingProductId === item.id
+                          ? "Deleting..."
+                          : "Delete"}
                       </button>
                     </td>
                   </tr>
